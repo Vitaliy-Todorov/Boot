@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Map_2
   m_EditorClassIdentifier: 
   LevelData:
-    LevelName: 1
+    LevelName: 2
     MinPosition: {x: 155, y: 612.4944}
     MaxPosition: {x: 925, y: 1252.4944}
     Obstacles: {fileID: 2423694474466721609, guid: 0de24762a1a529e46b6a64d1d5ee72bc, type: 3}
+    Card: {fileID: 2705652076805215413, guid: e3893df2c3acc164b908fc6049b4a7b8, type: 3}

@@ -23,8 +23,10 @@ namespace UI
             _assetProvider = gameManager.Services.Single<IAssetProvider>();
             
             IDataService dataService = gameManager.Services.Single<IDataService>();
-            foreach (Result result in dataService.ResultsTable) 
-                CreateResultUI(result);
+            for (int i = 0; i < dataService.ResultsTable.Count; i++) 
+                CreateResultUI(i+1, dataService.ResultsTable[i]);
+            /*foreach (Result result in dataService.ResultsTable) 
+                CreateResultUI(1, result);*/
 
             _back.onClick.AddListener(Back);
         }
@@ -34,13 +36,13 @@ namespace UI
             _stateMachine.Enter<MainMenuState>();
         }
 
-        private ResultUI CreateResultUI(Result result)
+        private ResultUI CreateResultUI(int place, Result result)
         {
             GameObject menuGO = _assetProvider.Instantiate(AssetPath.ResultUI, _resultsTableUI);
             
             ResultUI resultUI = menuGO.GetComponentInChildren<ResultUI>();
             if (resultUI != null)
-                resultUI.Init(result);
+                resultUI.Init(place, result);
             else
                 Debug.LogError($"This prefab has no {typeof(ResultUI)}");
 

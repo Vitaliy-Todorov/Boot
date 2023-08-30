@@ -37,6 +37,8 @@ namespace Entities
             Vector2 nexPosition = (Vector2) transform.position + direction * Speed * Time.deltaTime;
             if(Helper.Contains(nexPosition, MinPosition, MaxPosition))
                 _rb.MovePosition(_rb.position + direction * Speed * Time.deltaTime);
+            else
+                _rb.velocity = Vector2.zero;
         }
     }
 }

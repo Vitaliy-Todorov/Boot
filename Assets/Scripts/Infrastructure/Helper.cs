@@ -11,6 +11,11 @@ namespace Infrastructure
             => obj != null && !obj.Equals(null);
 
         public static bool Contains(Vector3 pointChecks, Vector3 minPosition, Vector3 maxPosition) =>
+            pointChecks.x < maxPosition.x &&
+            pointChecks.y < maxPosition.y && 
+            pointChecks.x > minPosition.x &&
+            pointChecks.y > minPosition.y;
+        public static bool StrictlyContains(Vector3 pointChecks, Vector3 minPosition, Vector3 maxPosition) =>
             pointChecks.x <= maxPosition.x &&
             pointChecks.y <= maxPosition.y && 
             pointChecks.x >= minPosition.x &&

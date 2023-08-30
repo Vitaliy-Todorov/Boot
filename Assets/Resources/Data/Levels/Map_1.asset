@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43043802bede4f7a8a0676240221b606, type: 3}
+  m_Name: Map_1
+  m_EditorClassIdentifier: 
+  LevelData:
+    LevelName: 1
+    MinPosition: {x: 155, y: 612.4944}
+    MaxPosition: {x: 925, y: 1252.4944}
+    Obstacles: {fileID: 2423694474466721609, guid: 0de24762a1a529e46b6a64d1d5ee72bc, type: 3}

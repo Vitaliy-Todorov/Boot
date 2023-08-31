@@ -38,7 +38,10 @@ namespace Entities
             if(Helper.Contains(nexPosition, MinPosition, MaxPosition))
                 _rb.MovePosition(_rb.position + direction * Speed * Time.deltaTime);
             else
-                _rb.velocity = Vector2.zero;
+            {
+                Vector2 beyondBorder = Helper.BeyondBorder(transform.position, MinPosition, MaxPosition);
+                _rb.MovePosition(_rb.position + beyondBorder * Speed * Time.deltaTime);
+            }
         }
     }
 }

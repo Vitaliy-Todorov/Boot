@@ -36,7 +36,7 @@ namespace Infrastructure.States
 
         private TState ChangeState<TState>() where TState : class, IExcitableState
         {
-            _activeState.Exit();
+            _activeState?.Exit();
 
             TState state = GetState<TState>();
             _activeState = state;

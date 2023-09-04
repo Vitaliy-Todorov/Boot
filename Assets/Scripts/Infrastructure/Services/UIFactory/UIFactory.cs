@@ -11,10 +11,10 @@ namespace Infrastructure.Services
         
         private LevelData _currentLevelData;
 
-        public void Init(GameManager gameManager)
+        public void Init(GameManager gameManager, IAssetProvider assetProvider)
         {
             _gameManager = gameManager;
-            _assetProvider = gameManager.Services.Single<IAssetProvider>();
+            _assetProvider = assetProvider;
         }
 
         public TMenu CreateUiElement<TMenu>(string path) where TMenu : IUiElement

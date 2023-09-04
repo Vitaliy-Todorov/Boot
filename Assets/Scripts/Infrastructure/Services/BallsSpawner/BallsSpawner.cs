@@ -8,7 +8,6 @@ namespace Infrastructure.Services
 {
     public class BallsSpawner : IBallsSpawner
     {
-        private GameManager _gameManager;
         private IGameFactory _gameFactory;
         private ILevelManager _levelManager;
         
@@ -18,10 +17,9 @@ namespace Infrastructure.Services
 
         public event Action DestroyedBallEvent;
 
-        public void Init(GameManager gameManager)
+        public void Init(IGameFactory gameFactory)
         {
-            _gameManager = gameManager;
-            _gameFactory = _gameManager.Services.Single<IGameFactory>();
+            _gameFactory = gameFactory;
         }
 
         public void StartLevel(ILevelManager levelManager)

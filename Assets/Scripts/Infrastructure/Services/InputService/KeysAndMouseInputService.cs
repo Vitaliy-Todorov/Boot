@@ -6,7 +6,7 @@ namespace Infrastructure.Services
     {
         public bool Block { get; set; }
 
-        public void Init(GameManager gameManager)
+        public void Init()
         {
             
         }

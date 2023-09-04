@@ -33,9 +33,9 @@ namespace Entities
             if (_entityType == EEntityType.None)
                 _entityType = entityData.EntityType;
             _health = GetComponent<Health>();
-            _health.Init(gameManager, entityData);
+            _health.Init(entityData);
             _damage = GetComponent<Damage>();
-            _damage.Init(gameManager, entityData);
+            _damage.Init(entityData);
             
             _movement = GetComponent<IMovement>();
             _movement.Init(gameManager, entityData);

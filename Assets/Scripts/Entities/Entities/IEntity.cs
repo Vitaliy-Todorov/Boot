@@ -11,10 +11,10 @@ namespace Entities
         string ID { get; }
         public EEntityType EntityType { get; }
         GameObject GameObject { get; }
-
         public Health Health { get; }
         
         event Action<string> Destroyed;
+        
         void Init(GameManager gameManager, EntityData entityData);
     }
 }

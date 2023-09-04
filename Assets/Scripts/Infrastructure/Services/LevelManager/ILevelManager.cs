@@ -14,7 +14,8 @@ namespace Infrastructure.Services
         
         
         event Action Destroyed;
-        
+
+        public void Init(GameManager gameManager);
         void StartLevel(LevelData levelData);
     }
 }

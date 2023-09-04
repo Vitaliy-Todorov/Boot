@@ -21,9 +21,9 @@ namespace Infrastructure.Services
         
         public event Action AddPointEvent;
         
-        public void Init(GameManager gameManager)
+        public void Init(IBallsSpawner ballsSpawner)
         {
-            _ballsSpawner = gameManager.Services.Single<IBallsSpawner>();
+            _ballsSpawner = ballsSpawner;
             _ballsSpawner.DestroyedBallEvent += AddPoint;
         }
 

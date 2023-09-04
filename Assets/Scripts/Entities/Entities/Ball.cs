@@ -29,7 +29,7 @@ namespace Entities
                 _entityType = entityData.EntityType;
             
             _health = GetComponent<Health>();
-            _health.Init(gameManager, entityData);
+            _health.Init(entityData);
         }
 
         private void OnDestroy()

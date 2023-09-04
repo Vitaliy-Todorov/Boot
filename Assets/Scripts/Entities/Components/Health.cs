@@ -12,7 +12,7 @@ namespace Entities
         private EntityData _entityData;
         private float _currentHealth;
 
-        public void Init(GameManager gameManager, EntityData entityData)
+        public void Init(EntityData entityData)
         {
             _entityData = entityData;
             _currentHealth = _entityData.MaxHealth;

@@ -10,10 +10,9 @@ namespace Infrastructure.States
         private readonly IUIFactory _uiFactory;
         private GameCardsMenu _gameCardsMenu;
 
-        public GameCardsState(GameManager gameManager)
+        public GameCardsState(IUIFactory uiFactory)
         {
-            _gameManager = gameManager;
-            _uiFactory = _gameManager.Services.Single<IUIFactory>();
+            _uiFactory = uiFactory;
         }
 
         public void Enter()

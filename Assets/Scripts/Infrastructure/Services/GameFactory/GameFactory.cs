@@ -17,10 +17,10 @@ namespace Infrastructure.Services
 
         private int DISTANCE_TO_OBSTACLES = 10;
 
-        public void Init(GameManager gameManager)
+        public void Init(GameManager gameManager, IStaticDataService staticDataService)
         {
             _gameManager = gameManager;
-            _staticDataService = gameManager.Services.Single<IStaticDataService>();
+            _staticDataService = staticDataService;
         }
 
         public GameObject CreateObstacles(LevelData levelData, RectTransform activeArea) => 
@@ -59,30 +59,6 @@ namespace Infrastructure.Services
             );
             
             return spawnPosition;
-        }
-
-        private static void Drawn(float ballRadius, Vector3 spawnPosition, Color color)
-        {
-            Debug.DrawRay(spawnPosition, Vector3.up * ballRadius, color, 100);
-            Debug.DrawRay(spawnPosition, Vector3.right * ballRadius, color, 100);
-            Debug.DrawRay(spawnPosition, Vector3.down * ballRadius, color, 100);
-            Debug.DrawRay(spawnPosition, Vector3.left * ballRadius, color, 100);
-        }
-
-        private GameObject CreateEntity(EEntityType entityType, Vector3 spawnPosition)
-        {
-            EntityData entityData = _staticDataService.GetEntityData(entityType);
-            GameObject entityGO = Object.Instantiate(entityData.Prefab, spawnPosition, Quaternion.identity);
-
-            return InitEntity(entityGO, entityData);
-        }
-
-        private GameObject CreateEntity(EEntityType entityType, Vector3 spawnPosition, Transform parent)
-        {
-            EntityData entityData = _staticDataService.GetEntityData(entityType);
-            GameObject entityGO = Object.Instantiate(entityData.Prefab, spawnPosition, Quaternion.identity, parent);
-
-            return InitEntity(entityGO, entityData);
         }
 
         public GameObject InitEntity(GameObject entityGO, EntityData entityData = null)

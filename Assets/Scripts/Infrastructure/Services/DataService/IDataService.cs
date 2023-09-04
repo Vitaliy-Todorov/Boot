@@ -9,6 +9,7 @@ namespace Infrastructure.Services
         event Action AddPointEvent;
         int Score { get; }
         public List<Result> ResultsTable { get; }
+        public void Init(IBallsSpawner ballsSpawner);
         void AddPoint();
         void ClearLevelData();
         void AddResult(string name);

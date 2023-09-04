@@ -4,7 +4,7 @@ namespace Infrastructure.Services
 {
     public class AssetProvider : IAssetProvider
     {
-        public void Init(GameManager gameManager)
+        public void Init()
         {
             
         }

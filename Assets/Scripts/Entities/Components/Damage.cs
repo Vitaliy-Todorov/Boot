@@ -11,7 +11,7 @@ namespace Entities
         private float DamageValue => _entityData.Damage;
         private EntityData _entityData;
 
-        public void Init(GameManager gameManager, EntityData entityData)
+        public void Init(EntityData entityData)
         {
             _entityData = entityData;
         }

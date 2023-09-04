@@ -6,5 +6,7 @@ namespace Infrastructure.Services
     {
         bool Block { get; set; }
         Vector2 GetAxes();
+
+        public void Init();
     }
 }

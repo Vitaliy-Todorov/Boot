@@ -11,8 +11,11 @@ namespace Infrastructure.Services
 
         public static AllServices Container => _instance ?? (_instance = new AllServices());
 
-        public void RegisterSingle<TService>(TService implementation) where TService : IService => 
+        public TService RegisterSingle<TService>(TService implementation) where TService : IService
+        {
             Implementation<TService>.ServiceInstance = implementation;
+            return implementation;
+        }
 
         public TService Single<TService>() where TService : IService => 
             Implementation<TService>.ServiceInstance;

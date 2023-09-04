@@ -6,14 +6,12 @@ namespace Infrastructure.States
 {
     public class MainMenuState : IState
     {
-        private readonly GameManager _gameManager;
         private IUIFactory _uiFactory;
         private MainMenu _mainMenu;
 
-        public MainMenuState(GameManager gameManager)
+        public MainMenuState(IUIFactory uiFactory)
         {
-            _gameManager = gameManager;
-            _uiFactory = _gameManager.Services.Single<IUIFactory>();
+            _uiFactory = uiFactory;
         }
 
         public void Enter()

@@ -38,7 +38,7 @@ namespace Infrastructure.Services
             _uiFactory = _gameManager.Services.Single<IUIFactory>();
             _ballsSpawner = _gameManager.Services.Single<IBallsSpawner>();
             
-            _controllerUI.Init(_gameManager);
+            _controllerUI.Init();
             _gameManager.Services.RegisterSingle<IInputService>(_controllerUI);
             
             _timer.Init(gameManager);

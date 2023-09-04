@@ -16,7 +16,7 @@ namespace Infrastructure.Services
         public List<LevelData> _allLevelData;
         public List<LevelData> AllLevelData => _allLevelData;
 
-        public void Init(GameManager services)
+        public void Init()
         {
             _entitiesData = Resources
                 .LoadAll<EntityStaticData>(StaticDataEntitiesPath)

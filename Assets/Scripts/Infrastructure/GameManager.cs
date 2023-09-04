@@ -25,7 +25,8 @@ namespace Infrastructure
             _services = AllServices.Container;
             new Const(_canvas);
 
-            RegisterServices();
+            RegisterAndInitServices();
+            Services.Single<IDataService>().Load();
             
             DontDestroyOnLoad(this);
             DontDestroyOnLoad(_canvas);
@@ -33,31 +34,29 @@ namespace Infrastructure
             StateMachine.Enter<MainMenuState>();
         }
 
-        private void RegisterServices()
+        private void RegisterAndInitServices()
         {
-            BallsSpawner ballsSpawner = new BallsSpawner();
-            Services.RegisterSingle<IBallsSpawner>(ballsSpawner);
-            
-            InitAndRegisterService<IInputService>(new KeysAndMouseInputService());
-            IDataService dataService = new DataService();
-            InitAndRegisterService<IDataService>(dataService);
-            InitAndRegisterService<IStaticDataService>(new StaticDataService());
-            InitAndRegisterService<IAssetProvider>(new AssetProvider());
-            InitAndRegisterService<IGameFactory>(new GameFactory());
-            InitAndRegisterService<IUIFactory>(new UIFactory());
-            
-            _stateMachine = new GameStateMachine();
-            InitAndRegisterService<IGameStateMachine>(_stateMachine);
-            
-            ballsSpawner.Init(this);
-            
-            dataService.Load();
-        }
+            // Register
+            IBallsSpawner ballsSpawner = Services.RegisterSingle<IBallsSpawner>(new BallsSpawner());
 
-        private void InitAndRegisterService<TService>(TService inputService) where TService : IService
-        {
-            inputService.Init(this);
-            Services.RegisterSingle<TService>(inputService);
+            IDataService dataService = Services.RegisterSingle<IDataService>(new DataService());
+            IStaticDataService staticDataService = Services.RegisterSingle<IStaticDataService>(new StaticDataService());
+            IAssetProvider assetProvider = Services.RegisterSingle<IAssetProvider>(new AssetProvider());
+            IGameFactory gameFactory = Services.RegisterSingle<IGameFactory>(new GameFactory());
+            IUIFactory uiFactory = Services.RegisterSingle<IUIFactory>(new UIFactory());
+            
+            _stateMachine = (GameStateMachine) Services.RegisterSingle<IGameStateMachine>(new GameStateMachine());
+            
+            // Init
+            dataService.Init(ballsSpawner);
+            staticDataService.Init();
+            assetProvider.Init();
+            gameFactory.Init(this, staticDataService);
+            uiFactory.Init(this, assetProvider);
+
+            ballsSpawner.Init(gameFactory);
+
+            _stateMachine.Init(this, uiFactory);
         }
     }
 }

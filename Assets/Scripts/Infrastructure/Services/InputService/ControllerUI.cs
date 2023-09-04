@@ -18,7 +18,7 @@ namespace Infrastructure.Services
 
         private Vector2 _axesValue;
         
-        public void Init(GameManager gameManager)
+        public void Init()
         {
             ChangingAxisY(_up, -1);
             ChangingAxisY(_down, 1);

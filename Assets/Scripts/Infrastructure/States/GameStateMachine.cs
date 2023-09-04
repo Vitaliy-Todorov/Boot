@@ -11,17 +11,14 @@ namespace Infrastructure.States
         private IExitablState _activeState;
         private GameManager _gameManager;
 
-        public void Init(GameManager gameManager)
+        public void Init(GameManager gameManager, IUIFactory uiFactory)
         {
-            _gameManager = gameManager;
-
-            AllServices services = _gameManager.Services;
             _states = new Dictionary<Type, IExitablState>()
             {
-                [typeof(MainMenuState)] = new MainMenuState(_gameManager),
-                [typeof(GameCardsState)] = new GameCardsState(_gameManager),
-                [typeof(GameLoopState)] = new GameLoopState(_gameManager),
-                [typeof(ResultsState)] = new ResultsState(_gameManager),
+                [typeof(MainMenuState)] = new MainMenuState(uiFactory),
+                [typeof(GameCardsState)] = new GameCardsState(uiFactory),
+                [typeof(GameLoopState)] = new GameLoopState(gameManager),
+                [typeof(ResultsState)] = new ResultsState(uiFactory),
             };
         }
 
@@ -39,7 +36,7 @@ namespace Infrastructure.States
 
         private TState ChangeState<TState>() where TState : class, IExitablState
         {
-            _activeState?.Exit();
+            _activeState.Exit();
 
             TState state = GetState<TState>();
             _activeState = state;

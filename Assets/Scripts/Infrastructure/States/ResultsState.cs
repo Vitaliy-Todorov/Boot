@@ -6,14 +6,12 @@ namespace Infrastructure.States
 {
     public class ResultsState : IState
     {
-        private readonly GameManager _gameManager;
         private readonly IUIFactory _uiFactory;
         private ResultsMenu _resultsMenu;
 
-        public ResultsState(GameManager gameManager)
+        public ResultsState(IUIFactory uiFactory)
         {
-            _gameManager = gameManager;
-            _uiFactory = _gameManager.Services.Single<IUIFactory>();
+            _uiFactory = uiFactory;
         }
 
         public void Enter()

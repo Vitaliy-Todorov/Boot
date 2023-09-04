@@ -24,6 +24,7 @@ namespace Infrastructure.Services
         private IGameFactory _gameFactory;
         private IUIFactory _uiFactory;
         private WinMenu _winMenu;
+        private IInputService _oldInputService;
 
         public LevelData LevelData => _levelData;
         public RectTransform ActiveArea => _activeArea;
@@ -37,11 +38,17 @@ namespace Infrastructure.Services
             _gameFactory = _gameManager.Services.Single<IGameFactory>();
             _uiFactory = _gameManager.Services.Single<IUIFactory>();
             _ballsSpawner = _gameManager.Services.Single<IBallsSpawner>();
-            
+
+            RegisterSingleInputService();
+
+            _timer.Init(gameManager);
+        }
+
+        private void RegisterSingleInputService()
+        {
+            _oldInputService = _gameManager.Services.Single<IInputService>();
             _controllerUI.Init();
             _gameManager.Services.RegisterSingle<IInputService>(_controllerUI);
-            
-            _timer.Init(gameManager);
         }
 
         public void StartLevel(LevelData levelData)
@@ -78,7 +85,7 @@ namespace Infrastructure.Services
 
         private void OnDestroy()
         {
-            _gameManager.Services.RegisterSingle<IInputService>(null);
+            _gameManager.Services.RegisterSingle<IInputService>(_oldInputService);
             
             if(_winMenu)
                 Destroy(_winMenu.gameObject);

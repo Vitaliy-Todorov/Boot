@@ -43,12 +43,7 @@ namespace UI
 
         private void LoadLevel(Card card)
         {
-            _stateMachine.Enter<GameLoopState>();
-
-            LevelData levelData = 
-                _staticDataService.GetLevelData(card.LevelName);
-            _gameManager.Services.Single<ILevelManager>()
-                .StartLevel(levelData);
+            _stateMachine.Enter<GameLoopState, ELevel>(card.LevelName);
         }
     }
 }

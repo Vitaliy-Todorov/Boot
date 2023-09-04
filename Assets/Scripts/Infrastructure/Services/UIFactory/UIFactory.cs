@@ -19,15 +19,15 @@ namespace Infrastructure.Services
 
         public TMenu CreateUiElement<TMenu>(string path) where TMenu : IUiElement
         {
-            GameObject menuGO = _assetProvider.Instantiate(path, _gameManager.Canvas);
+            GameObject uiElementGO = _assetProvider.Instantiate(path, _gameManager.Canvas);
             
-            TMenu mainMenu = menuGO.GetComponentInChildren<TMenu>();
-            if (mainMenu != null)
-                mainMenu.Init(_gameManager);
+            TMenu uiElement = uiElementGO.GetComponentInChildren<TMenu>();
+            if (uiElement != null)
+                uiElement.Init(_gameManager);
             else
                 Debug.LogError($"This prefab has no {typeof(TMenu)}");
 
-            return mainMenu;
+            return uiElement;
         }
     }
 }

@@ -1,16 +1,16 @@
 ﻿namespace Infrastructure.States
 {
-    public interface IState : IExitablState
+    public interface IState : IExcitableState
     {
         void Enter();
     }
 
-    public interface IPlaylaodedState<TPlayload> : IExitablState
+    public interface IPlaylaodedState<TPlayload> : IExcitableState
     {
         void Enter(TPlayload playload);
     }
 
-    public interface IExitablState
+    public interface IExcitableState
     {
         void Exit();
     }

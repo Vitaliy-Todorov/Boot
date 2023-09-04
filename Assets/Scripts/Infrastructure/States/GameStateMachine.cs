@@ -7,13 +7,13 @@ namespace Infrastructure.States
 {
     public class GameStateMachine : IGameStateMachine
     {
-        private Dictionary<Type, IExitablState> _states;
-        private IExitablState _activeState;
+        private Dictionary<Type, IExcitableState> _states;
+        private IExcitableState _activeState;
         private GameManager _gameManager;
 
         public void Init(GameManager gameManager, IUIFactory uiFactory)
         {
-            _states = new Dictionary<Type, IExitablState>()
+            _states = new Dictionary<Type, IExcitableState>()
             {
                 [typeof(MainMenuState)] = new MainMenuState(uiFactory),
                 [typeof(GameCardsState)] = new GameCardsState(uiFactory),
@@ -34,7 +34,7 @@ namespace Infrastructure.States
             state.Enter(playload);
         }
 
-        private TState ChangeState<TState>() where TState : class, IExitablState
+        private TState ChangeState<TState>() where TState : class, IExcitableState
         {
             _activeState.Exit();
 
@@ -44,7 +44,7 @@ namespace Infrastructure.States
             return state;
         }
 
-        private TExitablState GetState<TExitablState>() where TExitablState : class, IExitablState =>
+        private TExitablState GetState<TExitablState>() where TExitablState : class, IExcitableState =>
             _states[typeof(TExitablState)] as TExitablState;
     }
 }
